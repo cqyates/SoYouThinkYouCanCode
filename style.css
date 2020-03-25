@@ -1,0 +1,24 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  background-color: rgba(128, 128, 128, 0.8);
+}
+
+#start-screen {
+  border: 1px solid;
+  border-radius: 5px;
+  max-width: 100vh;
+  margin-top: 100px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 5px 5px 5px 5px #888888;
+  background-color: white;
+}
+i {
+  margin: 5px;
+  color: rgb(247, 195, 83);
+}
