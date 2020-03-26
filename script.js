@@ -11,7 +11,7 @@ var questions = [
     answer: 'all of the above'
   },
   {
-    question: 'Is Java short for Javascript',
+    question: 'Java short for Javascript',
     choices: ['true', 'false'],
     answer: 'false'
   },
@@ -25,14 +25,9 @@ var questions = [
     answer: 'push, filter, forEach, map'
   },
   {
-    question: 'Where in our code do we keep the styling',
-    choices: [
-      'in a styles.css file',
-      'between two style tags',
-      'inside our html with the style attribute',
-      'all of the above'
-    ],
-    answer: 'all of the above'
+    question: '_________ is a Javascript library for DOM manipulation',
+    choices: ['Node.js', 'JQuery', 'MySQL', 'Bootstrap'],
+    answer: 'JQuery'
   },
   {
     question: 'Where in our code do we keep the styling',
@@ -48,12 +43,14 @@ var questions = [
 
 var Q = 0;
 var correct = [];
+var time = 1000;
 
 var startBtn = document.getElementById('start-btn');
 var startScreenEl = document.getElementById('start-screen');
 var questionTitleEl = document.getElementById('question-title');
 var questionCardEl = document.getElementById('question-card');
 var choicesEl = document.getElementById('choices');
+var timeEl = document.getElementById('timer');
 
 function buildQuestionCard() {
   var currentQuestion = questions[Q];
@@ -73,6 +70,8 @@ function buildQuestionCard() {
 
     choicesEl.appendChild(choiceNode);
   });
+
+  timeEl.textContent = time;
 }
 
 function questionClick() {
@@ -85,6 +84,7 @@ function questionClick() {
   } else {
     correct.push(questions[Q]);
     console.log(correct);
+    //show right on the screen
     //add time
   }
   Q++;
