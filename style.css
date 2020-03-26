@@ -4,8 +4,10 @@
 body {
   background-color: rgba(128, 128, 128, 0.8);
 }
-
-#start-screen {
+.hide {
+  display: none;
+}
+.container {
   border: 1px solid;
   border-radius: 5px;
   max-width: 100vh;
@@ -21,4 +23,7 @@ body {
 i {
   margin: 5px;
   color: rgb(247, 195, 83);
+}
+button {
+  width: 100%;
 }
