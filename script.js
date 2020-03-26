@@ -1,7 +1,7 @@
 //questions array
 var questions = [
   {
-    question: 'Where in our code do we keep the styling',
+    question: 'Where in our code do we keep the styling?',
     choices: [
       'in a style.css file',
       'between two style tags',
@@ -58,17 +58,31 @@ var startBtn = document.getElementById('start-btn');
 var startScreenEl = document.getElementById('start-screen');
 var questionTitleEl = document.getElementById('question-title');
 var questionCardEl = document.getElementById('question-card');
+var choicesEl = document.getElementById('choices');
 
-function getQuestion() {
+function buildQuestionCard() {
   var currentQuestion = questions[Q];
 
   questionTitleEl.textContent = currentQuestion.question;
+
+  choicesEl.innerHTML = '';
+
+  currentQuestion.choices.forEach(function(choice, i) {
+    var choiceNode = document.createElement('button');
+    // choiceNode.setAttribute('type', 'radio');
+    choiceNode.setAttribute('class', 'choice');
+    choiceNode.setAttribute('value', choice);
+
+    choiceNode.textContent = i + 1 + '. ' + choice;
+
+    choicesEl.appendChild(choiceNode);
+  });
 }
 
 function startQuiz() {
   startScreenEl.setAttribute('class', 'hide');
   questionCardEl.removeAttribute('class');
-  getQuestion();
+  buildQuestionCard();
 }
 
 startBtn.addEventListener('click', startQuiz);
