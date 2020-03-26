@@ -16,14 +16,13 @@ var questions = [
     answer: 'false'
   },
   {
-    question: 'Where in our code do we keep the styling',
+    question: 'Which of these are array methods?',
     choices: [
-      'in a styles.css file',
-      'between two style tags',
-      'inside our html with the style attribute',
-      'all of the above'
+      'push, pull, forEach, map',
+      'forEach, filter, map, state',
+      'push, filter, forEach, map'
     ],
-    answer: 'all of the above'
+    answer: 'push, filter, forEach, map'
   },
   {
     question: 'Where in our code do we keep the styling',
@@ -48,6 +47,7 @@ var questions = [
 ];
 
 var Q = 0;
+var correct = [];
 
 var startBtn = document.getElementById('start-btn');
 var startScreenEl = document.getElementById('start-screen');
@@ -78,9 +78,17 @@ function buildQuestionCard() {
 function questionClick() {
   //if the answer is wrong
   if (this.value !== questions[Q].answer) {
-    Q++;
-    buildQuestionCard();
+    console.log('wrong');
+    //show wrong on screen
+    //subtract time
+    //conditional to make sure there is still time
+  } else {
+    correct.push(questions[Q]);
+    console.log(correct);
+    //add time
   }
+  Q++;
+  buildQuestionCard();
   //if the answer is right
 }
 
