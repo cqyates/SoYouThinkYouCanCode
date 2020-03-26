@@ -74,8 +74,14 @@ function buildQuestionCard() {
 
     choiceNode.textContent = choice;
 
+    choiceNode.onclick = questionClick;
+
     choicesEl.appendChild(choiceNode);
   });
+}
+
+function questionClick() {
+  console.log(this.value);
 }
 
 function startQuiz() {
