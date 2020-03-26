@@ -52,12 +52,23 @@ var questions = [
   }
 ];
 
+var Q = 0;
+
 var startBtn = document.getElementById('start-btn');
 var startScreenEl = document.getElementById('start-screen');
+var questionTitleEl = document.getElementById('question-title');
+var questionCardEl = document.getElementById('question-card');
+
+function getQuestion() {
+  var currentQuestion = questions[Q];
+
+  questionTitleEl.textContent = currentQuestion.question;
+}
 
 function startQuiz() {
   startScreenEl.setAttribute('class', 'hide');
-  console.log('start');
+  questionCardEl.removeAttribute('class');
+  getQuestion();
 }
 
 startBtn.addEventListener('click', startQuiz);
