@@ -11,14 +11,9 @@ var questions = [
     answer: 'all of the above'
   },
   {
-    question: 'Where in our code do we keep the styling',
-    choices: [
-      'in a styles.css file',
-      'between two style tags',
-      'inside our html with the style attribute',
-      'all of the above'
-    ],
-    answer: 'all of the above'
+    question: 'Is Java short for Javascript',
+    choices: ['true', 'false'],
+    answer: 'false'
   },
   {
     question: 'Where in our code do we keep the styling',
@@ -81,7 +76,12 @@ function buildQuestionCard() {
 }
 
 function questionClick() {
-  console.log(this.value);
+  //if the answer is wrong
+  if (this.value !== questions[Q].answer) {
+    Q++;
+    buildQuestionCard();
+  }
+  //if the answer is right
 }
 
 function startQuiz() {
