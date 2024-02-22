@@ -30,11 +30,11 @@ var questions = [
     answer: 'JQuery'
   },
   {
-    question: 'Where in our code do we keep the styling',
+    question: 'Where in our code do we keep the javascript logic',
     choices: [
-      'in a styles.css file',
-      'between two style tags',
-      'inside our html with the style attribute',
+      'in a script.css file',
+      'between two script tags',
+      'inside our html with the onclick attribute',
       'all of the above'
     ],
     answer: 'all of the above'
@@ -43,7 +43,7 @@ var questions = [
 
 var Q = 0;
 var correct = [];
-var time = 1000;
+var time = 60;
 
 var startBtn = document.getElementById('start-btn');
 var startScreenEl = document.getElementById('start-screen');
@@ -60,18 +60,18 @@ function buildQuestionCard() {
   choicesEl.innerHTML = '';
 
   currentQuestion.choices.forEach(function(choice, i) {
-    var choiceNode = document.createElement('button');
-    choiceNode.setAttribute('class', 'choice');
-    choiceNode.setAttribute('value', choice);
+    var choiceBtn = document.createElement('button');
+    choiceBtn.setAttribute('class', 'choice');
+    choiceBtn.setAttribute('value', choice);
 
-    choiceNode.textContent = choice;
+    choiceBtn.textContent = choice;
 
-    choiceNode.onclick = questionClick;
+    choiceBtn.onclick = questionClick;
 
-    choicesEl.appendChild(choiceNode);
+    choicesEl.appendChild(choiceBtn);
   });
 
-  timeEl.textContent = time;
+  // timeEl.textContent = time;
 }
 
 function questionClick() {
@@ -88,10 +88,19 @@ function questionClick() {
     //add time
   }
   Q++;
-  buildQuestionCard();
-  //if the answer is right
+  if(Q===questions.length) {
+    endGame()
+  } else {
+    buildQuestionCard();
+  }
 }
-
+function endGame() {
+  console.log(correct)
+  questionCardEl.classList.add("hide")
+  //clear out question div and buttons
+  //display name input and score values on screen
+  //add event listener to submit button.
+}
 function startQuiz() {
   startScreenEl.setAttribute('class', 'hide');
   questionCardEl.removeAttribute('class');
