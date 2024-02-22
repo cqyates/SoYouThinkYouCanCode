@@ -51,7 +51,8 @@ var questionTitleEl = document.getElementById('question-title');
 var questionCardEl = document.getElementById('question-card');
 var choicesEl = document.getElementById('choices');
 var timeEl = document.getElementById('timer');
-
+let timeLeft;
+let timeInterval;
 function buildQuestionCard() {
   var currentQuestion = questions[Q];
 
@@ -78,14 +79,15 @@ function questionClick() {
   //if the answer is wrong
   if (this.value !== questions[Q].answer) {
     console.log('wrong');
-    //show wrong on screen
-    //subtract time
+    time -= 10
+    if (time < 0) {
+      endGame()
+    }
     //conditional to make sure there is still time
   } else {
     correct.push(questions[Q]);
-    console.log(correct);
+    time += 10
     //show right on the screen
-    //add time
   }
   Q++;
   if(Q===questions.length) {
@@ -95,24 +97,35 @@ function questionClick() {
   }
 }
 function endGame() {
-  console.log(correct)
   questionCardEl.classList.add("hide")
   document.getElementById("endGame-card").classList.remove("hide")
-  //clear out question div and buttons
-  //display name input and score values on screen
-  //add event listener to submit button.
+  timeLeft = time;
+  clearInterval(timeInterval)
+  if (timeLeft === 0 || correct.length ===0) {
+    document.getElementById("status").textContent = "Lose!"
+  } else {
+    document.getElementById("status").textContent = `Won! Your Score is ${correct.length*timeLeft}`
+  }
 }
 function startQuiz() {
   startScreenEl.setAttribute('class', 'hide');
   questionCardEl.removeAttribute('class');
   buildQuestionCard();
+ timeInterval= setInterval(runTimer, 1000)
 }
-
+function runTimer() {
+  time--;
+  if(time < 0 ) {
+    time = 0
+  }
+  timeEl.textContent = time
+  
+}
 startBtn.addEventListener('click', startQuiz);
 document.getElementById("score-form").addEventListener("submit", function(){
   var firstName = document.getElementById("first").value
   var lastName = document.getElementById("last").value
-  var score = correct.length;
+  var score = correct.length*timeLeft;
   var scoreObject = {firstName, lastName, score}
   highScoresArray.push(scoreObject)
   localStorage.setItem("high-scores", JSON.stringify(highScoresArray))
