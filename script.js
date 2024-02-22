@@ -97,6 +97,7 @@ function questionClick() {
 function endGame() {
   console.log(correct)
   questionCardEl.classList.add("hide")
+  document.getElementById("endGame-card").classList.remove("hide")
   //clear out question div and buttons
   //display name input and score values on screen
   //add event listener to submit button.
