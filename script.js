@@ -100,13 +100,14 @@ function endGame() {
   questionCardEl.classList.add("hide")
   document.getElementById("endGame-card").classList.remove("hide")
   timeLeft = time;
-  clearInterval(timeInterval)
-  if (timeLeft === 0 || correct.length ===0) {
+  var score= correct.length*timeLeft
+  if (score===0) {
     document.getElementById("status").textContent = "Lose!"
     document.getElementById("score-form").classList.add("hide")
     document.getElementById("reset").classList.remove("hide")
   } else {
     document.getElementById("status").textContent = `Won! Your Score is ${correct.length*timeLeft}`
+    document.getElementById("score-form").classList.remove("hide")
   }
 }
 function startQuiz() {
@@ -127,11 +128,13 @@ function runTimer() {
   
 }
 startBtn.addEventListener('click', startQuiz);
-document.getElementById("score-form").addEventListener("submit", function(){
+document.getElementById("score-form").addEventListener("submit", function(event){
+  event.preventDefault()
   var firstName = document.getElementById("first").value
   var lastName = document.getElementById("last").value
   var score = correct.length*timeLeft;
   var scoreObject = {firstName, lastName, score}
   highScoresArray.push(scoreObject)
   localStorage.setItem("high-scores", JSON.stringify(highScoresArray))
+  document.location.href = "highscore.html"
 })
