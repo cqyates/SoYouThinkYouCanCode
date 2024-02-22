@@ -29,6 +29,9 @@
       highScores.sort((a,b)=>{
         return b.score-a.score
       })
+      if(highScores.length >10) {
+        highScores.pop()
+      }
       for(var i =0;i<highScores.length; i++) {
         var li = document.createElement("li")
         li.textContent = `${highScores[i].firstName} ${highScores[i].lastName} -- ${highScores[i].score}`
