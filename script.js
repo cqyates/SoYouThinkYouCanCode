@@ -43,7 +43,7 @@ var questions = [
 
 var Q = 0;
 var correct = [];
-var time = 60;
+var time;
 var highScoresArray = JSON.parse(localStorage.getItem("high-scores")) || []
 var startBtn = document.getElementById('start-btn');
 var startScreenEl = document.getElementById('start-screen');
@@ -103,12 +103,17 @@ function endGame() {
   clearInterval(timeInterval)
   if (timeLeft === 0 || correct.length ===0) {
     document.getElementById("status").textContent = "Lose!"
+    document.getElementById("score-form").classList.add("hide")
+    document.getElementById("reset").classList.remove("hide")
   } else {
     document.getElementById("status").textContent = `Won! Your Score is ${correct.length*timeLeft}`
   }
 }
 function startQuiz() {
+  Q=0;
+  time=60;
   startScreenEl.setAttribute('class', 'hide');
+  document.getElementById("endGame-card").classList.add("hide")
   questionCardEl.removeAttribute('class');
   buildQuestionCard();
  timeInterval= setInterval(runTimer, 1000)

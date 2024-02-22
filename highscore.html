@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+
+    <title>So You Think You Can Code</title>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/257e4dd7de.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container" style="width: 400px">
+      <h2 class="card-title">Top Scores</h2>
+      <ol id="high-scores-list" style="width:fit-content; margin: 0 auto"></ol>
+    </div>
+
+    <script>
+      var highScores = JSON.parse(localStorage.getItem("high-scores"))
+      highScores.sort((a,b)=>{
+        return b.score-a.score
+      })
+      for(var i =0;i<highScores.length; i++) {
+        var li = document.createElement("li")
+        li.textContent = `${highScores[i].firstName} ${highScores[i].lastName} -- ${highScores[i].score}`
+        document.getElementById("high-scores-list").appendChild(li)
+      }
+    </script>
+  </body>
+</html>
