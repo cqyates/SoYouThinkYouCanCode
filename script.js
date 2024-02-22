@@ -44,7 +44,7 @@ var questions = [
 var Q = 0;
 var correct = [];
 var time = 60;
-
+var highScoresArray = JSON.parse(localStorage.getItem("high-scores")) || []
 var startBtn = document.getElementById('start-btn');
 var startScreenEl = document.getElementById('start-screen');
 var questionTitleEl = document.getElementById('question-title');
@@ -109,3 +109,11 @@ function startQuiz() {
 }
 
 startBtn.addEventListener('click', startQuiz);
+document.getElementById("score-form").addEventListener("submit", function(){
+  var firstName = document.getElementById("first").value
+  var lastName = document.getElementById("last").value
+  var score = correct.length;
+  var scoreObject = {firstName, lastName, score}
+  highScoresArray.push(scoreObject)
+  localStorage.setItem("high-scores", JSON.stringify(highScoresArray))
+})
