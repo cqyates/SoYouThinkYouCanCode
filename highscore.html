@@ -21,8 +21,9 @@
     <div class="container" style="width: 400px">
       <h2 class="card-title">Top Scores</h2>
       <ol id="high-scores-list" style="width:fit-content; margin: 0 auto"></ol>
+    <a href="./index.html"> <button style="width: 40%" class="btn btn-danger">Play Again</button></a>  
     </div>
-
+    
     <script>
       var highScores = JSON.parse(localStorage.getItem("high-scores"))
       highScores.sort((a,b)=>{
